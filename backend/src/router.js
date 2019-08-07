@@ -1,13 +1,8 @@
+const DevController = require('./controllers/DevController');
 const express = require('express');
 
 const routes = express.Router();
 
-routes.get('/', (req, res) => {
-    return res.json({ message: `Hello World Modude!!! ${ req.query.nome }` });
-});
-
-routes.post('/devs', (req, res) => {
-    return res.json(req.body);
-})
+routes.post('/devs', DevController.store);
 
 module.exports = routes;
