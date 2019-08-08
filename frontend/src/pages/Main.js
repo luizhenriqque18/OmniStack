@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import api from '../services/api';
 import './Main.css';
 import logo from '../assets/logo.svg';
@@ -8,12 +9,20 @@ import dislike from '../assets/dislike.svg';
 export default function Main({ match }){
     const [users, setUsers] = useState([]);
     
-    function handlerlike(id){
-        console.log('like', id);
+    async function handlerlike(id){
+        await api.post(`devs/${id}/like`, null, {
+            headers: {user:  match.params.id}
+        });
+
+        setUsers(users.filter((user) => user._id !== id));
     }
     
-    function handlerdeslike(id){
-        console.log('like', id);
+    async function handlerdeslike(id){
+        await api.post(`devs/${id}/deslike`, null, {
+            headers: {user:  match.params.id}
+        });
+
+        setUsers(users.filter(user => user._id !== id));
     }
     
     useEffect(() => {
@@ -28,7 +37,9 @@ export default function Main({ match }){
 
     return(
         <div className="main-container">
-            <img src={logo} alt="Tindev" />
+            <Link to='/'>
+                <img src={logo} alt="Tindev" />
+            </Link>
             { users.length > 0 ? (
                <ul>
                { users.map( user => (
@@ -39,10 +50,10 @@ export default function Main({ match }){
                                <p>{ user.bio }</p>
                            </footer>
                            <div className="buttons">
-                               <button type="button" onClick={handlerdeslike}>
+                               <button type="button" onClick={()=>handlerdeslike(user._id)}>
                                    <img src={ dislike } alt="dislike" />
                                </button>
-                               <button type="button" onClick={handlerlike}>
+                               <button type="button" onClick={()=>handlerlike(user._id)}>
                                    <img src={ like } alt="like" />
                                </button>
                            </div>
