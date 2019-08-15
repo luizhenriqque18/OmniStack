@@ -6,8 +6,13 @@
  * @flow
  */
 import React from 'react'
-import { Text, View } from 'react-native';
+import { YellowBox} from 'react-native';
 import Routes from './routes';
+
+YellowBox.ignoreWarnings([
+  'Unrecognized WebSocket',
+  'Warning componentWillReceiveProps'
+]);
 
 export default function App(){
   return(
