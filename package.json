@@ -1,0 +1,21 @@
+{
+  "name": "tindev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start" : "npm run start-back & npm run start-front",
+    "start-back" : "(cd backend && npm run start)",
+    "start-front" : "(cd frontend && npm run build && npm run start)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luizhenriqque18/OmniStack.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luizhenriqque18/OmniStack/issues"
+  },
+  "homepage": "https://github.com/luizhenriqque18/OmniStack#readme"
+}
